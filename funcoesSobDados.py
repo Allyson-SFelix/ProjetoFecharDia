@@ -1,3 +1,4 @@
+from funcoesFuncionalidades import *
 
 class Bombas:
     def __init__(self):
@@ -5,10 +6,18 @@ class Bombas:
         self.litroTotalMedido=0.0
         self.RvDinheiro=0.0
         self.RvLitro=0.0
-   
+        self.dinheiroCaixa=0
+        self.valesCaixa=0
+        
+    @classmethod
+    def salvarValoresCaixa(cls,dinheiro,vale):
+                cls.dinheiroCaixa=dinheiro
+                cls.valesCaixa=vale
+                print(cls.dinheiroCaixa,cls.valesCaixa)
+
    
     
-def salvarDados(litroMedida,valorLitro,dinheiroRevenda,litrosRevenda):
+def salvarDados(litroMedida,valorLitro,dinheiroRevenda,litrosRevenda,dinheiroCaixa,valesCaixa):
         listaBombas=[]*6
         for i in range(6): #alocando cada objeto para uma casa do array 
             listaBombas.append(Bombas())
@@ -17,7 +26,8 @@ def salvarDados(litroMedida,valorLitro,dinheiroRevenda,litrosRevenda):
         salvarLitroMedidos(listaBombas,litroMedida)
         salvarValorLitros(listaBombas,valorLitro)
         salvarDadosRevenda(listaBombas,dinheiroRevenda,litrosRevenda)
-    
+        Bombas.salvarValoresCaixa(dinheiroCaixa,valesCaixa)
+        trabalharNosDados(listaBombas,Bombas)
 
 def salvarDadosRevenda(listaBombas,dinheiroRevenda,litrosRevenda):
     for i in range(6): 

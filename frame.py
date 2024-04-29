@@ -1,5 +1,5 @@
 from tkinter import *
-from funcoes import *
+from funcoesSobDados import *
 from funcoesFrames import *
 
 window=Tk()
@@ -13,19 +13,41 @@ class Aplicativo():
         self.valorLitro=[0]*6 #valor dos litros
         self.dinheiroRevendas=[0]*6
         self.litroRevendas=[0]*6
+        self.dinheiroCaixa=0
+        self.valeCaixa=0
         #configura a tela principal
         self.configJanela()
 
-        #criacao dos 6 frames
+        #criacao dos 6 frames bomba
         self.frameBombas=[] 
         for i in range (6):
-            self.framesDaJanela(i)
-
+            self.framesDaJanelaBombas(i)
         #personaliza os 6 frames
         self.addNosFrames()
 
+        #criacao do frame vale e dinheiro
+        self.frameDinheiroVale=None
+        self.frameCaixa()
+        self.estilizaCaixa()
+        
+        #botao de execucao do programa    
+        self.botaoEnvia()
+
         #loop de execucao para aparecer a tela
         self.janela.mainloop()
+
+    def frameCaixa(self):
+        self.frameDinheiroVale=Frame(self.janela, bg="#808080", bd=2, highlightbackground="#808080")
+        self.frameDinheiroVale.grid(row=10,column=0, pady=10)
+
+    def estilizaCaixa(self):
+         #Bloco 1
+        entradaDinheiro=dinheiroCaixa(self.frameDinheiroVale)
+        entradaDinheiro.bind("<FocusOut>", lambda event,entradaDinheiro=entradaDinheiro : self.pegandoDinheiro(entradaDinheiro))    
+        
+        entradaVale=valeCaixa(self.frameDinheiroVale)
+        entradaVale.bind("<FocusOut>", lambda event,entradaVale=entradaVale : self.pegandoVales(entradaVale))
+            
 
     def configJanela(self): #estiliza a janela principal
         self.janela.title("Somar/Fechar dia")
@@ -35,8 +57,7 @@ class Aplicativo():
         foto=PhotoImage(file="./img/logo.png") 
         self.janela.iconphoto(FALSE,foto)
     
-    def framesDaJanela(self,contador):
-        cores = ["red", "green", "blue", "yellow", "orange", "purple"]
+    def framesDaJanelaBombas(self,contador):
         frame=Frame(self.janela, bg="#9d9382", bd=2 , highlightbackground="#0012ff")
         
         frame.grid(row=1, column=contador, padx=5)
@@ -74,12 +95,7 @@ class Aplicativo():
             #Bloco 6 - espaco
             frameEspaco(self.frameBombas[i],8)
             
-            #Bloco 7 -
-            
-            
-        #botao de execucao do programa    
-        self.botaoEnvia()
-            
+            #Bloco 7 -       
             
     def pegandoLitrosRevenda(self,i,litroRevenda):
         tempValor= litroRevenda.get()
@@ -94,16 +110,14 @@ class Aplicativo():
             self.dinheiroRevendas[i]=float(tempValor)
         else:
             print("VAZIO")
-            
-            
+                      
     def pegandoValorLitros(self,i,valorLitro):
         tempValor= valorLitro.get()
         if tempValor!="":
             self.valorLitro[i]=float(tempValor)
         else:
             print("VAZIO")
-
-    
+  
     def pegandoLitrosMedidos(self, i, LitroMedido):     
         #salvando na array os litros medido
         tempValor= LitroMedido.get()
@@ -112,9 +126,25 @@ class Aplicativo():
         else:
             print("VAZIO")
 
+
+    def pegandoDinheiro(self,dinheiro):
+        tempValor= dinheiro.get()
+        if tempValor!="":
+            self.dinheiroCaixa=float(tempValor)
+        else:
+            print("VAZIO")
+
+    def pegandoVales(self,vale):
+        tempValor= vale.get()
+        if tempValor!="":
+            self.valeCaixa=float(tempValor)
+        else:
+            print("VAZIO")
+
+
     def botaoEnvia(self):
-        button=Button(self.janela, command=lambda:salvarDados(self.litrosMedidoTodos,self.valorLitro, self.dinheiroRevendas,self.litroRevendas))
-        button.grid(row=10,column=0)
+        button=Button(self.janela, command=lambda:salvarDados(self.litrosMedidoTodos,self.valorLitro, self.dinheiroRevendas,self.litroRevendas, self.dinheiroCaixa,self.valeCaixa))
+        button.grid(row=12,column=0, pady=10)
         # dar o foco ao botao ao ser clicado evento de ser clicado pelo mouse que executa a funcao focus_set no botao
         button.bind("<Button-1>", lambda event :button.focus_set())
         

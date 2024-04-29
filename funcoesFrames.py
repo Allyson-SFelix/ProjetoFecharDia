@@ -1,5 +1,19 @@
 from tkinter import *
 
+def dinheiroCaixa(janela):
+    textoDinheiro=Label(janela, text="Dinheiro no caixa", bg="#9d9382")
+    textoDinheiro.grid(row=0,column=0)
+    valorDinheiro=Entry(janela)
+    valorDinheiro.grid(row=0,column=1)
+    return valorDinheiro
+
+def valeCaixa(janela):
+    textoVale=Label(janela, text="Vendas de vale", bg="#9d9382")
+    textoVale.grid(row=1,column=0)
+    valorVale=Entry(janela)
+    valorVale.grid(row=1,column=1)
+    return valorVale
+
 def frameValorLitro(frameBombas):
     textoValorLitros=Label(frameBombas, text="Valor do Litro", bg="#9d9382")
     textoValorLitros.grid(row=4,column=0)

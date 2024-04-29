@@ -55,11 +55,17 @@ codigo_b3_final = abs(codigo_b3_2-codigo_b3_1)
 codigo_b6_final = abs(codigo_b6_2-codigo_b6_1)
 litros_vendidos_b3_b6 = codigo_b3_final + codigo_b6_final
 
+
+
 litro_final_b3 = abs(litros_vendidos_b3_b6 - soma_dos_litros_dos_vales_b3)
 litro_final_b5 = abs(litros_vendidos_b2_b5 -
                      soma_dos_litros_dos_vales_b5 - soma_dos_litros_rv_b5)
 litro_final_b1 = abs(litros_vendidos_b1_b4 -
                      soma_dos_litros_dos_vales_b1 - soma_dos_litros_rv_b1)
+
+
+
+
 
 
 dinheiro_do_litro_b1 = (litro_final_b1*valor_do_litro_b1_b4)
@@ -68,6 +74,9 @@ dinheiro_do_litro_b5 = (litro_final_b5*valor_do_litro_b2_b5)
 dinheiro_total_b1 = dinheiro_do_litro_b1 + soma_dos_dinheiro_rv_b1
 dinheiro_total_b5 = dinheiro_do_litro_b5 + soma_dos_dinheiro_rv_b5
 dinheiro_total_b3 = (litro_final_b3*valor_do_litro_b3_b6)
+
+
+
 
 dinheiro_total_das_bombas = (
     dinheiro_total_b1 + dinheiro_total_b5 + dinheiro_total_b3)
