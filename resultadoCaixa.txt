@@ -1,3 +1,0 @@
-Valor do dinheiro do caixa do dia: 0
-Valor do dinheiro das Bombas: 20000.0
-Diferenca ( Se for positivo -> ESTA PASSANDO 	 Se for negativo -> ESTA FALTANDO): -20000.0
