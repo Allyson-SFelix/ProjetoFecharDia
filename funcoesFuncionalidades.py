@@ -14,7 +14,8 @@ def trabalharNosDados(listaBombas,Bombas):
     valorCaixa=Bombas.dinheiroCaixa + Bombas.valesCaixa
     diferencaDinheiro=0.0
     diferencaDinheiro=valorCaixa-dinheiroTotalBombas 
-    escreverNoArquivo(valorCaixa,diferencaDinheiro,dinheiroTotalBombas)
+    escreverNoArquivo(listaBombas,valorCaixa,diferencaDinheiro,dinheiroTotalBombas)
+    
     
     
 def somaLitroFinal(contador,listaBombas):
@@ -30,8 +31,10 @@ def somaDosDinheiros(contador,listaBombas,dinheiroPorBombasLitros):
     return tempDinheiroBomba
 
 
-def escreverNoArquivo(valorCaixa,diferencaDinheiro,dinheiroTotalBombas):
+def escreverNoArquivo(listaBombas,valorCaixa,diferencaDinheiro,dinheiroTotalBombas):
     with open("resultadoCaixa.txt","w") as arquivo:
         arquivo.write(f"Valor do dinheiro do caixa do dia: {valorCaixa:.2f}\n")
         arquivo.write(f"Valor do dinheiro das Bombas: {dinheiroTotalBombas:.2f}\n")
-        arquivo.write(f"Diferenca: \n\t( Se for positivo -> ESTA PASSANDO \t Se for negativo -> ESTA FALTANDO):\n{diferencaDinheiro:.2f}")
+        arquivo.write(f"Diferenca: \n\t( Se for positivo -> ESTA PASSANDO \t Se for negativo -> ESTA FALTANDO):\n\t\t{diferencaDinheiro:.2f}\n\n")
+        for i in range (0,6):
+            arquivo.write(f"Bomba {i+1}\tLitros:{listaBombas[i].litroTotalMedido}\tLitros Revenda: {listaBombas[i].RvLitro}\n")
